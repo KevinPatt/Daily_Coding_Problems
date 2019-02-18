@@ -3,6 +3,9 @@ import base64
 import nbformat as nbf
 import os
 
+# TODO: Comment code
+# TODO: Only create files if they don't exist already. Pull existing ones with os.listdir?
+
 service = read_gmail.auth_gmail_api()
 
 messages = read_gmail.list_messages(service, query='subject:"Daily Coding Problem: Problem #"')
@@ -30,7 +33,11 @@ for message in messages:
         os.mkdir(folder)
 
     try:
-        with open(file_path, 'w', encoding="utf-8") as f:
-            nbf.write(nb, f)
+        if not os.path.exists(file_path):
+            print('Creating', file_path)
+            with open(file_path, 'w', encoding="utf-8") as f:
+                nbf.write(nb, f)
+        else:
+            print('File already exists. Skipping')
     except (UnicodeEncodeError, TypeError) as error:
         print(error)
