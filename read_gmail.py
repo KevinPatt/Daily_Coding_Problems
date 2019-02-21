@@ -2,6 +2,11 @@
 This module is for reading the contents of Gmail messages
 It contains three functions to authenticate with the Gmail API, get a list of messages that match a query,
 and read the contents of the messages from the list.
+
+Required Packages:
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
 """
 
 import pickle
